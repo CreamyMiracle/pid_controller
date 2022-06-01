@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "04093d24-dac5-4a5d-bff8-012b33b66dc7": {
+      "ProjectGuid": "04093d24-dac5-4a5d-bff8-012b33b66dc7",
+      "DisplayName": "PIDController",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "46c2f9e7-5415-44bc-a811-939ab1a9cb07": {
+      "ProjectGuid": "46c2f9e7-5415-44bc-a811-939ab1a9cb07",
+      "DisplayName": "System",
+      "ColorIndex": 1
+    },
+    "6db1dd4b-af4d-451b-98ac-083a3be5d153": {
+      "ProjectGuid": "6db1dd4b-af4d-451b-98ac-083a3be5d153",
+      "DisplayName": "PIDSystem",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

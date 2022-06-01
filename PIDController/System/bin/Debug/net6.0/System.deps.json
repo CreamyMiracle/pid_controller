@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "System/1.0.0": {
+        "dependencies": {
+          "PIDController": "1.0.0"
+        },
+        "runtime": {
+          "System.dll": {}
+        }
+      },
+      "PIDController/1.0.0": {
+        "runtime": {
+          "PIDController.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "System/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PIDController/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

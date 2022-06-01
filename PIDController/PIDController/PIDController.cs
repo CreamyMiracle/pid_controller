@@ -1,4 +1,4 @@
-﻿namespace PIDController
+﻿namespace PID
 {
     public class PIDController
     {
@@ -15,12 +15,12 @@
         private float outMin;
         private float outMax;
 
-        private DerivativeMeasurement derivativeMeasurement = DerivativeMeasurement.Smth;
+        private DerivativeMeasurement derivativeMeasurement = DerivativeMeasurement.Error;
         private SystemType systemType = SystemType.Linear;
 
         private bool derivativeInitialized = false;
 
-        public PIDController(float _proportionalGain, float _integralGain, float _derivativeGain, float _outMin, float _outMax, DerivativeMeasurement _derivativeMeasurement, SystemType _systemType, float _integralSaturation)
+        public PIDController(float _proportionalGain, float _integralGain, float _derivativeGain, float _outMin, float _outMax, float _integralSaturation, DerivativeMeasurement _derivativeMeasurement = DerivativeMeasurement.Error, SystemType _systemType = SystemType.Linear)
         {
             proportionalGain = _proportionalGain;
             integralGain = _integralGain;
@@ -39,9 +39,6 @@
         {
             float currError = Error(currValue, targetValue);
 
-            float dValue = ValueDiff(currValue, dTime);
-            float dError = ErrorDiff(currError, dTime);
-
             // Proportional to error
             float p_term = P(currError);
 
@@ -49,6 +46,8 @@
             float i_term = I(currError, dTime);
 
             // Fights the rate of change of the error (or value)
+            float dValue = ValueDiff(currValue, dTime);
+            float dError = ErrorDiff(currError, dTime);
             float d_term = D(dError, dValue);
 
             float result = p_term + d_term + i_term;
@@ -59,6 +58,7 @@
         public void Reset()
         {
             derivativeInitialized = false;
+            integrationStored = 0;
         }
 
         private float ValueDiff(float currValue, float dTime)
@@ -118,12 +118,12 @@
         {
             if (!derivativeInitialized)
             {
+                derivativeInitialized = true;
                 return 0;
             }
-            derivativeInitialized = true;
 
             // To prevent derivative kicks
-            if (derivativeMeasurement.Equals(DerivativeMeasurement.Velocity))
+            if (derivativeMeasurement.Equals(DerivativeMeasurement.Value))
             {
                 return derivativeGain * -dValue;
             }
@@ -146,8 +146,8 @@
 
     public enum DerivativeMeasurement
     {
-        Velocity,
-        Smth
+        Value,
+        Error
     }
 
     public enum SystemType
